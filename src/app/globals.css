@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  width: max-content;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.neck{
+  width: 100%;
+  border-top: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  display: flex;
+}
+
+.fret{
+  display:flex;
+  flex-direction: column;
+  position: relative
+}
+
+.tune {
+  display: flex;
+  justify-content: center;
+  gap:.5rem
+}
+
+.tuner{
+  display: flex;
+  gap: .75rem;
+  padding: 0 1rem;
+}
+
+.tuner .button{
+  border: 1px solid #ffffff50;
+  border-radius: 9rem;
+  padding: .25rem .5rem;
+  cursor: pointer;
+}
+
+.note{
+  height:50px;
+  border: 1px solid #ffffff50;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.numb{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  bottom: -50px;
+  font-size: 1.5rem;
+  justify-content: center;
+}
+
+.instrument-popup{
+  background-color: #0a0a0a80;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: hidden;
+  z-index: 100;
+}
+
+.majorPart{
+  background-color: #eeaa50;
+}
+.minorPart{
+  background-color: #5087ee;
+}
+.majorSelected{
+  background-color: #f39d2d ;
+}
+.minorSelected{
+  background-color: #2a51bb ;
+}
