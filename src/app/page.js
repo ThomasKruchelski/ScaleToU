@@ -1,5 +1,6 @@
 'use client'
 import Image from "next/image";
+import removePivot from "@/components/removePivot";
 
 export default function Home() {
 
@@ -8,8 +9,8 @@ export default function Home() {
   const handleClickNote = (event) => {
     // console.log(event.currentTarget.classList[1])
 
-    console.log(event.currentTarget.classList)
-    console.log('=======> event.currentTarget.classList')
+    // console.log(event.currentTarget.classList)
+    // console.log('=======> event.currentTarget.classList')
 
     const hasMajorSelected = event.currentTarget.classList.contains('majorSelected');
     const hasMinorSelected = event.currentTarget.classList.contains('minorSelected');
@@ -20,9 +21,9 @@ export default function Home() {
 
         selectAntigo.forEach((select) => {
           select.classList.remove("majorSelected"),
-            select.classList.remove("majorPart"),
-            select.classList.remove("minorSelected"),
-            select.classList.remove("minorPart")
+          select.classList.remove("majorPart"),
+          select.classList.remove("minorSelected"),
+          select.classList.remove("minorPart")
         })
 
       } catch (error) {
@@ -67,7 +68,7 @@ export default function Home() {
 
       event.currentTarget.classList.add('majorSelected')
 
-      Scalefy({ note: event.currentTarget.classList[1], type: 'major' })
+      Scalefy({ note: event.currentTarget.classList[2], type: 'major' })
 
     }
 
@@ -172,8 +173,9 @@ export default function Home() {
       }
     }
 
-    console.log(scale[SuperTonica])
+    // console.log(scale[SuperTonica])
     console.log([
+      scale[Tonica],
       scale[SuperTonica],
       scale[Mediante],
       scale[SubDominante],
@@ -181,6 +183,7 @@ export default function Home() {
       scale[SuperDominante],
       scale[Sensivel]
     ])
+    console.log("Escala selecionada")
 
     const AllScaleNotes = document.querySelectorAll([
       '.' + scale[Tonica],
@@ -198,8 +201,8 @@ export default function Home() {
       AllScaleNotes.forEach((select) => select.classList.add("minorPart"))
     }
 
-    console.log(AllScaleNotes)
-    console.log('AllScaleNotes')
+    // console.log(AllScaleNotes)
+    // console.log('AllScaleNotes')
 
   }
 
@@ -209,49 +212,64 @@ export default function Home() {
 
   function tuneUp(musicString){
     const stringNotes = document.querySelectorAll(`.${musicString}`)
-    console.log(stringNotes)
+    // console.log(stringNotes)
 
     stringNotes.forEach((select =>{
       select.classList.forEach((cssClass) => {
         if(cssClass == 'A'){
           select.classList.add('pivotAs')
           select.classList.remove('A')
+          select.innerHTML= "A#"
         } else if(cssClass == 'As'){
           select.classList.add('pivotB')
           select.classList.remove('As')
-          } else if(cssClass == 'B'){
+          select.innerHTML= "B"
+        } else if(cssClass == 'B'){
           select.classList.add('pivotC')
           select.classList.remove('B')
-          } else if(cssClass == 'C'){
+          select.innerHTML= "C"
+        } else if(cssClass == 'C'){
           select.classList.add('pivotCs')
           select.classList.remove('C')
-          } else if(cssClass == 'Cs'){
+          select.innerHTML= "C#"
+        } else if(cssClass == 'Cs'){
           select.classList.add('pivotD')
           select.classList.remove('Cs')
-          } else if(cssClass == 'D'){
+          select.innerHTML= "D"
+        } else if(cssClass == 'D'){
           select.classList.add('pivotDs')
           select.classList.remove('D')
-          } else if(cssClass == 'Ds'){
+          select.innerHTML= "D#"
+        } else if(cssClass == 'Ds'){
           select.classList.add('pivotE')
           select.classList.remove('Ds')
-          } else if(cssClass == 'E'){
+          select.innerHTML= "E"
+        } else if(cssClass == 'E'){
           select.classList.add('pivotF')
           select.classList.remove('E')
-          } else if(cssClass == 'F'){
+          select.innerHTML= "F"
+        } else if(cssClass == 'F'){
           select.classList.add('pivotFs')
           select.classList.remove('F')
-          } else if(cssClass == 'Fs'){
+          select.innerHTML= "F#"
+        } else if(cssClass == 'Fs'){
           select.classList.add('pivotG')
           select.classList.remove('Fs')
-          } else if(cssClass == 'G'){
+          select.innerHTML= "G"
+        } else if(cssClass == 'G'){
           select.classList.add('pivotGs')
           select.classList.remove('G')
-          } else if(cssClass == 'Gs'){
+          select.innerHTML= "G#"
+        } else if(cssClass == 'Gs'){
           select.classList.add('pivotA')
           select.classList.remove('Gs')
-          }
+          select.innerHTML= "A"
+        }
       })
     }))
+
+    removePivot();
+
   }
 
   function tuneDown(musicString){
@@ -266,10 +284,10 @@ export default function Home() {
 
       <div className="head">
         <div className="string">
-          <div className='tune th-1'>
-            Nota <b className="E">E</b>
+          <div className='tune'>
+            Nota <b className="th-1 E">E</b>
           </div>
-          <div className="th-1 tuner">
+          <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-1')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-1')}>▶</div>
           </div>
@@ -279,163 +297,163 @@ export default function Home() {
 
       <div className='neck'>
         <div className='fret'>
-          <div onClick={handleClickNote} className='note E th-1'>E</div>
-          <div onClick={handleClickNote} className='note B th-2'>B</div>
-          <div onClick={handleClickNote} className='note G th-3'>G</div>
-          <div onClick={handleClickNote} className='note D th-4'>D</div>
-          <div onClick={handleClickNote} className='note A th-5'>A</div>
-          <div onClick={handleClickNote} className='note E th-6'>E</div>
-          <div onClick={handleClickNote} className='note B th-7'>B</div>
+          <div onClick={handleClickNote} className='note th-1 E '>E</div>
+          <div onClick={handleClickNote} className='note th-2 B '>B</div>
+          <div onClick={handleClickNote} className='note th-3 G '>G</div>
+          <div onClick={handleClickNote} className='note th-4 D '>D</div>
+          <div onClick={handleClickNote} className='note th-5 A '>A</div>
+          <div onClick={handleClickNote} className='note th-6 E '>E</div>
+          <div onClick={handleClickNote} className='note th-7 B '>B</div>
         </div>
         <div className='fret'>
           <div className='numb'>1</div>
-          <div onClick={handleClickNote} className='note F  th-1'>F</div>
-          <div onClick={handleClickNote} className='note C  th-2'>C</div>
-          <div onClick={handleClickNote} className='note Gs th-3'>G#</div>
-          <div onClick={handleClickNote} className='note Ds th-4'>D#</div>
-          <div onClick={handleClickNote} className='note As th-5'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-6'>F</div>
-          <div onClick={handleClickNote} className='note C  th-7'>C</div>
+          <div onClick={handleClickNote} className='note th-1 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-2 C  '>C</div>
+          <div onClick={handleClickNote} className='note th-3 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-4 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-5 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-6 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-7 C  '>C</div>
         </div>
         <div className='fret'>
           <div className='numb'>2</div>
-          <div onClick={handleClickNote} className='note Fs th-1'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-2'>C#</div>
-          <div onClick={handleClickNote} className='note A  th-3'>A</div>
-          <div onClick={handleClickNote} className='note E  th-4'>E</div>
-          <div onClick={handleClickNote} className='note B  th-5'>B</div>
-          <div onClick={handleClickNote} className='note Fs th-6'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-7'>C#</div>
+          <div onClick={handleClickNote} className='note th-1 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-2 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-3 A  '>A</div>
+          <div onClick={handleClickNote} className='note th-4 E  '>E</div>
+          <div onClick={handleClickNote} className='note th-5 B  '>B</div>
+          <div onClick={handleClickNote} className='note th-6 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-7 Cs '>C#</div>
         </div>
         <div className='fret'>
           <div className='numb'>3</div>
-          <div onClick={handleClickNote} className='note G  th-1'>G</div>
-          <div onClick={handleClickNote} className='note D  th-2'>D</div>
-          <div onClick={handleClickNote} className='note As th-3'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-4'>F</div>
-          <div onClick={handleClickNote} className='note C  th-5'>C</div>
-          <div onClick={handleClickNote} className='note G  th-6'>G</div>
-          <div onClick={handleClickNote} className='note D  th-7'>D</div>
+          <div onClick={handleClickNote} className='note th-1 G  '>G</div>
+          <div onClick={handleClickNote} className='note th-2 D  '>D</div>
+          <div onClick={handleClickNote} className='note th-3 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-4 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-5 C  '>C</div>
+          <div onClick={handleClickNote} className='note th-6 G  '>G</div>
+          <div onClick={handleClickNote} className='note th-7 D  '>D</div>
         </div>
         <div className='fret'>
           <div className='numb'>4</div>
-          <div onClick={handleClickNote} className='note Gs th-1'>G#</div>
-          <div onClick={handleClickNote} className='note Ds th-2'>D#</div>
-          <div onClick={handleClickNote} className='note B  th-3'>B</div>
-          <div onClick={handleClickNote} className='note Fs th-4'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-5'>C#</div>
-          <div onClick={handleClickNote} className='note Gs th-6'>G#</div>
-          <div onClick={handleClickNote} className='note Ds th-7'>D#</div>
+          <div onClick={handleClickNote} className='note th-1 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-2 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-3 B  '>B</div>
+          <div onClick={handleClickNote} className='note th-4 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-5 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-6 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-7 Ds '>D#</div>
         </div>
         <div className='fret'>
           <div className='numb'>5</div>
-          <div onClick={handleClickNote} className='note A th-1'>A</div>
-          <div onClick={handleClickNote} className='note E th-2'>E</div>
-          <div onClick={handleClickNote} className='note C th-3'>C</div>
-          <div onClick={handleClickNote} className='note G th-4'>G</div>
-          <div onClick={handleClickNote} className='note D th-5'>D</div>
-          <div onClick={handleClickNote} className='note A th-6'>A</div>
-          <div onClick={handleClickNote} className='note E th-7'>E</div>
+          <div onClick={handleClickNote} className='note th-1 A '>A</div>
+          <div onClick={handleClickNote} className='note th-2 E '>E</div>
+          <div onClick={handleClickNote} className='note th-3 C '>C</div>
+          <div onClick={handleClickNote} className='note th-4 G '>G</div>
+          <div onClick={handleClickNote} className='note th-5 D '>D</div>
+          <div onClick={handleClickNote} className='note th-6 A '>A</div>
+          <div onClick={handleClickNote} className='note th-7 E '>E</div>
         </div>
         <div className='fret'>
           <div className='numb'>6</div>
-          <div onClick={handleClickNote} className='note As th-1'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-2'>F</div>
-          <div onClick={handleClickNote} className='note Cs th-3'>C#</div>
-          <div onClick={handleClickNote} className='note Gs th-4'>G#</div>
-          <div onClick={handleClickNote} className='note Ds th-5'>D#</div>
-          <div onClick={handleClickNote} className='note As th-6'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-7'>F</div>
+          <div onClick={handleClickNote} className='note th-1 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-2 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-3 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-4 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-5 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-6 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-7 F  '>F</div>
         </div>
         <div className='fret'>
           <div className='numb'>7</div>
-          <div onClick={handleClickNote} className='note B  th-1'>B</div>
-          <div onClick={handleClickNote} className='note Fs th-2'>F#</div>
-          <div onClick={handleClickNote} className='note D  th-3'>D</div>
-          <div onClick={handleClickNote} className='note A  th-4'>A</div>
-          <div onClick={handleClickNote} className='note E  th-5'>E</div>
-          <div onClick={handleClickNote} className='note B  th-6'>B</div>
-          <div onClick={handleClickNote} className='note Fs th-7'>F#</div>
+          <div onClick={handleClickNote} className='note th-1 B  '>B</div>
+          <div onClick={handleClickNote} className='note th-2 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-3 D  '>D</div>
+          <div onClick={handleClickNote} className='note th-4 A  '>A</div>
+          <div onClick={handleClickNote} className='note th-5 E  '>E</div>
+          <div onClick={handleClickNote} className='note th-6 B  '>B</div>
+          <div onClick={handleClickNote} className='note th-7 Fs '>F#</div>
         </div>
         <div className='fret'>
           <div className='numb'>8</div>
-          <div onClick={handleClickNote} className='note C  th-1'>C</div>
-          <div onClick={handleClickNote} className='note G  th-2'>G</div>
-          <div onClick={handleClickNote} className='note Ds th-3'>D#</div>
-          <div onClick={handleClickNote} className='note As th-4'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-5'>F</div>
-          <div onClick={handleClickNote} className='note C  th-6'>C</div>
-          <div onClick={handleClickNote} className='note G  th-7'>G</div>
+          <div onClick={handleClickNote} className='note th-1 C  '>C</div>
+          <div onClick={handleClickNote} className='note th-2 G  '>G</div>
+          <div onClick={handleClickNote} className='note th-3 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-4 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-5 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-6 C  '>C</div>
+          <div onClick={handleClickNote} className='note th-7 G  '>G</div>
         </div>
         <div className='fret'>
           <div className='numb'>9</div>
-          <div onClick={handleClickNote} className='note Cs th-1'>C#</div>
-          <div onClick={handleClickNote} className='note Gs th-2'>G#</div>
-          <div onClick={handleClickNote} className='note E  th-3'>E</div>
-          <div onClick={handleClickNote} className='note B  th-4'>B</div>
-          <div onClick={handleClickNote} className='note Fs th-5'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-6'>C#</div>
-          <div onClick={handleClickNote} className='note Gs th-7'>G#</div>
+          <div onClick={handleClickNote} className='note th-1 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-2 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-3 E  '>E</div>
+          <div onClick={handleClickNote} className='note th-4 B  '>B</div>
+          <div onClick={handleClickNote} className='note th-5 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-6 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-7 Gs '>G#</div>
         </div>
         <div className='fret'>
           <div className='numb'>10</div>
-          <div onClick={handleClickNote} className='note D th-1'>D</div>
-          <div onClick={handleClickNote} className='note A th-2'>A</div>
-          <div onClick={handleClickNote} className='note F th-3'>F</div>
-          <div onClick={handleClickNote} className='note C th-4'>C</div>
-          <div onClick={handleClickNote} className='note G th-5'>G</div>
-          <div onClick={handleClickNote} className='note D th-6'>D</div>
-          <div onClick={handleClickNote} className='note A th-7'>A</div>
+          <div onClick={handleClickNote} className='note th-1 D '>D</div>
+          <div onClick={handleClickNote} className='note th-2 A '>A</div>
+          <div onClick={handleClickNote} className='note th-3 F '>F</div>
+          <div onClick={handleClickNote} className='note th-4 C '>C</div>
+          <div onClick={handleClickNote} className='note th-5 G '>G</div>
+          <div onClick={handleClickNote} className='note th-6 D '>D</div>
+          <div onClick={handleClickNote} className='note th-7 A '>A</div>
         </div>
         <div className='fret'>
           <div className='numb'>11</div>
-          <div onClick={handleClickNote} className='note Ds th-1'>D#</div>
-          <div onClick={handleClickNote} className='note As th-2'>A#</div>
-          <div onClick={handleClickNote} className='note Fs th-3'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-4'>C#</div>
-          <div onClick={handleClickNote} className='note Gs th-5'>G#</div>
-          <div onClick={handleClickNote} className='note Ds th-6'>D#</div>
-          <div onClick={handleClickNote} className='note As th-7'>A#</div>
+          <div onClick={handleClickNote} className='note th-1 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-2 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-3 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-4 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-5 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-6 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-7 As '>A#</div>
         </div>
         <div className='fret'>
           <div className='numb'>12</div>
-          <div onClick={handleClickNote} className='note E th-1'>E</div>
-          <div onClick={handleClickNote} className='note B th-2'>B</div>
-          <div onClick={handleClickNote} className='note G th-3'>G</div>
-          <div onClick={handleClickNote} className='note D th-4'>D</div>
-          <div onClick={handleClickNote} className='note A th-5'>A</div>
-          <div onClick={handleClickNote} className='note E th-6'>E</div>
-          <div onClick={handleClickNote} className='note B th-7'>B</div>
+          <div onClick={handleClickNote} className='note th-1 E '>E</div>
+          <div onClick={handleClickNote} className='note th-2 B '>B</div>
+          <div onClick={handleClickNote} className='note th-3 G '>G</div>
+          <div onClick={handleClickNote} className='note th-4 D '>D</div>
+          <div onClick={handleClickNote} className='note th-5 A '>A</div>
+          <div onClick={handleClickNote} className='note th-6 E '>E</div>
+          <div onClick={handleClickNote} className='note th-7 B '>B</div>
         </div>
         <div className='fret'>
           <div className='numb'>13</div>
-          <div onClick={handleClickNote} className='note F  th-1'>F</div>
-          <div onClick={handleClickNote} className='note C  th-2'>C</div>
-          <div onClick={handleClickNote} className='note Gs th-3'>G#</div>
-          <div onClick={handleClickNote} className='note Ds th-4'>D#</div>
-          <div onClick={handleClickNote} className='note As th-5'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-6'>F</div>
-          <div onClick={handleClickNote} className='note C  th-7'>C</div>
+          <div onClick={handleClickNote} className='note th-1 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-2 C  '>C</div>
+          <div onClick={handleClickNote} className='note th-3 Gs '>G#</div>
+          <div onClick={handleClickNote} className='note th-4 Ds '>D#</div>
+          <div onClick={handleClickNote} className='note th-5 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-6 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-7 C  '>C</div>
         </div>
         <div className='fret'>
           <div className='numb'>14</div>
-          <div onClick={handleClickNote} className='note Fs th-1'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-2'>C#</div>
-          <div onClick={handleClickNote} className='note A  th-3'>A</div>
-          <div onClick={handleClickNote} className='note E  th-4'>E</div>
-          <div onClick={handleClickNote} className='note B  th-5'>B</div>
-          <div onClick={handleClickNote} className='note Fs th-6'>F#</div>
-          <div onClick={handleClickNote} className='note Cs th-7'>C#</div>
+          <div onClick={handleClickNote} className='note th-1 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-2 Cs '>C#</div>
+          <div onClick={handleClickNote} className='note th-3 A  '>A</div>
+          <div onClick={handleClickNote} className='note th-4 E  '>E</div>
+          <div onClick={handleClickNote} className='note th-5 B  '>B</div>
+          <div onClick={handleClickNote} className='note th-6 Fs '>F#</div>
+          <div onClick={handleClickNote} className='note th-7 Cs '>C#</div>
         </div>
         <div className='fret'>
           <div className='numb'>15</div>
-          <div onClick={handleClickNote} className='note G  th-1'>G</div>
-          <div onClick={handleClickNote} className='note D  th-2'>D</div>
-          <div onClick={handleClickNote} className='note As th-3'>A#</div>
-          <div onClick={handleClickNote} className='note F  th-4'>F</div>
-          <div onClick={handleClickNote} className='note C  th-5'>C</div>
-          <div onClick={handleClickNote} className='note G  th-6'>G</div>
-          <div onClick={handleClickNote} className='note D  th-7'>D</div>
+          <div onClick={handleClickNote} className='note th-1 G  '>G</div>
+          <div onClick={handleClickNote} className='note th-2 D  '>D</div>
+          <div onClick={handleClickNote} className='note th-3 As '>A#</div>
+          <div onClick={handleClickNote} className='note th-4 F  '>F</div>
+          <div onClick={handleClickNote} className='note th-5 C  '>C</div>
+          <div onClick={handleClickNote} className='note th-6 G  '>G</div>
+          <div onClick={handleClickNote} className='note th-7 D  '>D</div>
         </div>
       </div>
     </div>
