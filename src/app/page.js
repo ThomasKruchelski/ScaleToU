@@ -349,6 +349,60 @@ export default function Home() {
             <div className="button" onClick={() => tuneUp('th-1')}>▶</div>
           </div>
         </div>
+        <div className="string">
+          <div className='tune'>
+            Nota <b className="th-2 B">B</b>
+          </div>
+          <div className="tuner">
+            <div className="button" onClick={() => tuneDown('th-2')}>◀</div>
+            <div className="button" onClick={() => tuneUp('th-2')}>▶</div>
+          </div>
+        </div>
+        <div className="string">
+          <div className='tune'>
+            Nota <b className="th-3 G">G</b>
+          </div>
+          <div className="tuner">
+            <div className="button" onClick={() => tuneDown('th-3')}>◀</div>
+            <div className="button" onClick={() => tuneUp('th-3')}>▶</div>
+          </div>
+        </div>
+        <div className="string">
+          <div className='tune'>
+            Nota <b className="th-4 D">D</b>
+          </div>
+          <div className="tuner">
+            <div className="button" onClick={() => tuneDown('th-4')}>◀</div>
+            <div className="button" onClick={() => tuneUp('th-4')}>▶</div>
+          </div>
+        </div>
+        <div className="string">
+          <div className='tune'>
+            Nota <b className="th-5 A">A</b>
+          </div>
+          <div className="tuner">
+            <div className="button" onClick={() => tuneDown('th-5')}>◀</div>
+            <div className="button" onClick={() => tuneUp('th-5')}>▶</div>
+          </div>
+        </div>
+        <div className="string">
+          <div className='tune'>
+            Nota <b className="th-6 E">E</b>
+          </div>
+          <div className="tuner">
+            <div className="button" onClick={() => tuneDown('th-6')}>◀</div>
+            <div className="button" onClick={() => tuneUp('th-6')}>▶</div>
+          </div>
+        </div>
+        <div className="string">
+          <div className='tune'>
+            Nota <b className="th-7 B">B</b>
+          </div>
+          <div className="tuner">
+            <div className="button" onClick={() => tuneDown('th-7')}>◀</div>
+            <div className="button" onClick={() => tuneUp('th-7')}>▶</div>
+          </div>
+        </div>
         
       </div>
 

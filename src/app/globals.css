@@ -37,6 +37,10 @@ body {
   display: flex;
 }
 
+.string{
+  padding-bottom: .5rem;
+}
+
 .fret{
   display:flex;
   flex-direction: column;
