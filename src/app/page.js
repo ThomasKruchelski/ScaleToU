@@ -354,6 +354,7 @@ export default function Home() {
       <div className="instrument-popup ">
         <h1>Vai tocar o que hoje?</h1>
         <div className="flex gap-4">
+
           <div className="select-instrument" onClick={() => selectInstrument('bass')}>
             <div className="ball">
               <Image
@@ -365,6 +366,43 @@ export default function Home() {
             </div>
             <div className="intrument-name">Baixo</div>
           </div>
+
+          <div className="select-instrument" onClick={() => selectInstrument('guitar')}>
+            <div className="ball">
+              <Image
+                src="300x300.svg"
+                alt="Descrição da imagem"
+                width={150}
+                height={150}
+              />
+            </div>
+            <div className="intrument-name">Guitarra</div>
+          </div>
+
+          <div className="select-instrument" onClick={() => selectInstrument('bass5strings')}>
+            <div className="ball">
+              <Image
+                src="300x300.svg"
+                alt="Descrição da imagem"
+                width={150}
+                height={150}
+              />
+            </div>
+            <div className="intrument-name">Baixo (5 Cordas)</div>
+          </div>
+
+          <div className="select-instrument" onClick={() => selectInstrument('guitar7strings')}>
+            <div className="ball">
+              <Image
+                src="300x300.svg"
+                alt="Descrição da imagem"
+                width={150}
+                height={150}
+              />
+            </div>
+            <div className="intrument-name">Guitarra (7 Cordas)</div>
+          </div>
+
         </div>
       </div>
 
