@@ -1,10 +1,14 @@
 'use client'
 import Image from "next/image";
+import { useState } from "react";
+
 import removePivot from "@/components/removePivot";
+import selectInstrument from "@/components/selectInstrument";
 
 export default function Home() {
 
   const scale = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B']
+  const [currentScale, setCurrentScale] = useState([])
 
   const handleClickNote = (event) => {
     // console.log(event.currentTarget.classList[1])
@@ -32,7 +36,7 @@ export default function Home() {
 
       event.currentTarget.classList.add('minorSelected')
 
-      Scalefy({ note: event.currentTarget.classList[1], type: 'minor' })
+      Scalefy({ note: event.currentTarget.classList[2], type: 'minor' })
 
     } else if (hasMinorSelected) {
 
@@ -77,6 +81,12 @@ export default function Home() {
   function Scalefy({ note, type }) {
     // console.log(note)
     // console.log('Nota ' + note)
+
+
+    // VVVV USADO PARA SALVAR A ESCALA, RECUPERADO APÓS AFINAR COM USESTATE VVVV //
+    // setCurrentScale([note,type])
+
+
 
     const posicaoNaEscala = scale.indexOf(note)
     console.log(posicaoNaEscala)
@@ -206,9 +216,7 @@ export default function Home() {
 
   }
 
-  function selectInstrument(instrument) {
-
-  }
+  
 
   function tuneUp(musicString){
     const stringNotes = document.querySelectorAll(`.${musicString}`)
@@ -270,6 +278,9 @@ export default function Home() {
 
     removePivot();
 
+    if(currentScale != []){
+      Scalefy({ note: currentScale[0], type: currentScale[1] })
+    }
   }
 
   function tuneDown(musicString){
@@ -331,72 +342,90 @@ export default function Home() {
     }))
 
     removePivot();
+
+    if(currentScale != []){
+      Scalefy({ note: currentScale[0], type: currentScale[1] })
+    }
+
   }
 
   return (
     <div className="flex justify-center items-center relative">
-      <div className="instrument-popup hidden">
-
+      <div className="instrument-popup ">
+        <h1>Vai tocar o que hoje?</h1>
+        <div className="flex gap-4">
+          <div className="select-instrument" onClick={() => selectInstrument('bass')}>
+            <div className="ball">
+              <Image
+                src="300x300.svg"
+                alt="Descrição da imagem"
+                width={150}
+                height={150}
+              />
+            </div>
+            <div className="intrument-name">Baixo</div>
+          </div>
+        </div>
       </div>
 
       <div className="head">
-        <div className="string">
+        <div className="string th-1">
           <div className='tune'>
-            Nota <b className="th-1 E">E</b>
+            Nota <b className=" E">E</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-1')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-1')}>▶</div>
           </div>
         </div>
-        <div className="string">
+        <div className="string th-2">
           <div className='tune'>
-            Nota <b className="th-2 B">B</b>
+            Nota <b className=" B">B</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-2')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-2')}>▶</div>
           </div>
         </div>
-        <div className="string">
+        <div className="string th-3">
           <div className='tune'>
-            Nota <b className="th-3 G">G</b>
+            Nota <b className=" G">G</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-3')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-3')}>▶</div>
           </div>
         </div>
-        <div className="string">
+        <div className="string th-4">
           <div className='tune'>
-            Nota <b className="th-4 D">D</b>
+            Nota <b className=" D">D</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-4')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-4')}>▶</div>
           </div>
         </div>
-        <div className="string">
+        <div className="string th-5">
           <div className='tune'>
-            Nota <b className="th-5 A">A</b>
+            Nota <b className=" A">A</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-5')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-5')}>▶</div>
           </div>
         </div>
-        <div className="string">
+        <div className="string th-6">
           <div className='tune'>
-            Nota <b className="th-6 E">E</b>
+            Nota <b className=" E">E</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-6')}>◀</div>
             <div className="button" onClick={() => tuneUp('th-6')}>▶</div>
           </div>
         </div>
-        <div className="string">
+        <div className="string th-7">
           <div className='tune'>
-            Nota <b className="th-7 B">B</b>
+            Nota <b className=" B">B</b>
           </div>
           <div className="tuner">
             <div className="button" onClick={() => tuneDown('th-7')}>◀</div>

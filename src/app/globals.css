@@ -25,9 +25,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   width: max-content;
-  height: 100vh;
+  height: 97vh;
   display: flex;
   align-items: center;
+}
+
+.hidden{
+  display: none !important;
 }
 
 .neck{
@@ -89,12 +93,34 @@ body {
 }
 
 .instrument-popup{
-  background-color: #0a0a0a80;
+  background-color: #000000f0;
   position: fixed;
   width: 100%;
   height: 100%;
-  display: hidden;
   z-index: 100;
+  top:0;
+  left:0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.instrument-popup h1{
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.select-instrument{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  gap:.5rem
+}
+
+.select-instrument .intrument-name{
+  font-size: 1.2rem;
 }
 
 .majorPart{
