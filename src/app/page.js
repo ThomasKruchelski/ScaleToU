@@ -273,7 +273,64 @@ export default function Home() {
   }
 
   function tuneDown(musicString){
+    const stringNotes = document.querySelectorAll(`.${musicString}`)
+    // console.log(stringNotes)
 
+    stringNotes.forEach((select =>{
+      select.classList.forEach((cssClass) => {
+        if(cssClass == 'A'){
+          select.classList.add('pivotGs')
+          select.classList.remove('A')
+          select.innerHTML= "G#"
+        } else if(cssClass == 'As'){
+          select.classList.add('pivotA')
+          select.classList.remove('As')
+          select.innerHTML= "A"
+        } else if(cssClass == 'B'){
+          select.classList.add('pivotAs')
+          select.classList.remove('B')
+          select.innerHTML= "A#"
+        } else if(cssClass == 'C'){
+          select.classList.add('pivotB')
+          select.classList.remove('C')
+          select.innerHTML= "B"
+        } else if(cssClass == 'Cs'){
+          select.classList.add('pivotC')
+          select.classList.remove('Cs')
+          select.innerHTML= "C"
+        } else if(cssClass == 'D'){
+          select.classList.add('pivotCs')
+          select.classList.remove('D')
+          select.innerHTML= "C#"
+        } else if(cssClass == 'Ds'){
+          select.classList.add('pivotD')
+          select.classList.remove('Ds')
+          select.innerHTML= "D"
+        } else if(cssClass == 'E'){
+          select.classList.add('pivotDs')
+          select.classList.remove('E')
+          select.innerHTML= "D#"
+        } else if(cssClass == 'F'){
+          select.classList.add('pivotE')
+          select.classList.remove('F')
+          select.innerHTML= "E"
+        } else if(cssClass == 'Fs'){
+          select.classList.add('pivotF')
+          select.classList.remove('Fs')
+          select.innerHTML= "F"
+        } else if(cssClass == 'G'){
+          select.classList.add('pivotFs')
+          select.classList.remove('G')
+          select.innerHTML= "F#"
+        } else if(cssClass == 'Gs'){
+          select.classList.add('pivotG')
+          select.classList.remove('Gs')
+          select.innerHTML= "G"
+        }
+      })
+    }))
+
+    removePivot();
   }
 
   return (
